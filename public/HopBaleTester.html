@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Hop Bale Model Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Bale Model Test</h1>
+        <script type="module">
+            import {PUBLIC as Model} from "./src/model/HopBale.js";
+            import {PUBLIC as Lot} from "./src/model/Lot.js";
+            import {PUBLIC as MongoDBClient} from "./src/model/MongoDBClient.js";
+            import {MongoSocketClient} from "./src/model/MongoSocketClient.js";
+            
+            // Connect to the database 
+            (async function()
+            {
+                let dbConn = new MongoSocketClient("bjmiller86");
+                
+                console.log(await dbConn.connect());
+                
+                Model.setMDBC(dbConn); 
+                Lot.setDBConnection(dbConn);
+                
+               // Update the lot's rejected bale count 
+               await Lot.set_rejectBaleCount ("", "OR00000000");
+               await Lot.set_rejectBaleCount ("", "OR00000000");
+               Lot.set_rejectBaleCount ("", "OR00000000");
+               await Lot.set_rejectBaleCount ("", "OR00000000");
+                
+            })();
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TCP Login Server Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Test the TCP Login Server</div>
+        
+        <script type="module">
+            // Create a WebSocket to connect to the TCPLoginServer
+            //let loginSocket = new WebSocket("ws://localhost:3003/bjmiller86");
+            import {MongoSocketClient} from "./src/model/MongoSocketClient.js"; 
+            import {PUBLIC as mdc} from "./src/model/MongoDBClient.js"; 
+            //import {User} from "../model/User.js";
+            
+            
+            let msc = new MongoSocketClient ("bjmiller86");
+            
+            
+            /*
+            msc.connect().then (function (message)
+            {
+                window.console.log(message);
+                /* Once the connection to the database server is made preform
+                 * the database operations *//*
+                msc.getRecord("__usrName", "test1", function (message)
+                {
+                    window.console.log("The server said: " + message.data);
+                });
+            }, 
+            function (reason)
+            {
+                // If there was a connection error tell the user 
+                window.console.log ("Connection error: " + reason);
+            });
+           */
+            
+            (async function ()
+            {
+                let response; 
+                
+                console.log(await msc.connect("bjmiller86")); 
+                /*                
+                response = mdc.createRecords({lotNumber: "OR00000001", bales: []});
+                console.log("Server said: " + response);
+                */
+                
+                // Get all the EARPS in a document
+                let ears = await msc.getEARS("lotNumber", "OR00000003", "bales");
+                console.log("EARS: " + JSON.stringify(ears));
+                
+                // See if a document is saved 
+                let saved = await msc.getRecord("lotNumber", "OR00000005");
+                console.log("Cursor: " + saved);
+                
+            })();
+            
+            /*(async function ()
+            {
+                // Create a user 
+                //let Jim = new User("Jim", "Doe", "ACME, Inc.", "test3", "test345"); 
+                let response = "";
+                
+                // Connect to the Database server with a web socket
+                await msc.connect();
+                                
+                // Add a new user to the database
+                /*response = await msc.createRecord({__baleID: "1235", __dateBaled: new Date().toDateString(),
+                                                   __fieldID: "01", __facilityID: "1",
+                                                   __hopVariety: "CAS", __lotNumber: "OR80000000",
+                                                   __weight: "100 lbs", __dryMat: "12%"});
+                
+                // Create a bale inside lot
+                //response = await msc.createEAR("lotNumber", "OR00000000", "bales", {baleID: 20});
+                
+                
+                /* Create a property in the hopbale 
+                response = await msc.setEARP("lotNumber", "OR00000000", "baleID", 20, "bales", "weight", 100); 
+                
+                // Create a property in the hopbale 
+                response = await msc.setEARP("lotNumber", "OR00000000", "baleID", 20, "bales", "fldID", 2); 
+                
+                // Create a property in the hopbale 
+                response = await msc.setEARP("lotNumber", "OR00000000", "baleID", 20, "bales", "fldID", 3); 
+                
+                // Delete a property of a hopBale
+                //response = await msc.deleteEARP("lotNumber", "OR00000000", "baleID", 20, "bales", "weight"); 
+                
+                //response = await msc.deleteEAR("lotNumber", "OR00000000", "bales", "baleID", 20);
+                
+                // Get a bale record
+                response = await msc.getEAR("lotNumber", "OR00000000", "baleID", 20, "bales");
+               
+                console.log("Server said: " + response);
+                
+                // Get lot record
+                response = await msc.getRecord("lotNumber", "OR00000000");
+                console.log("Server said: " + response);
+                
+                // Get the amount of bale records in the lot
+                response = await msc.getEALength("lotNumber", "OR00000000", "bales");
+                console.log("Server said the length is: " + response);
+                
+                // Get a property value from the bale record in the lot
+                response = await msc.getEARP("lotNumber", "OR00000000", "bales", "baleID", "2", "lotNumber"); 
+                console.log("Server said: " + response);
+    
+             
+            })();
+            */
+    
+             /*
+            // Listen for the connection open event
+            loginSocket.addEventListener ("open", function (event)
+            {  
+              // Request some data 
+               loginSocket.send("bjmiller86|get_rcd|{\"qry\": {}}");
+               
+               window.setTimeout(function ()
+               {
+                   // Request to change the data
+                   loginSocket.send("bjmiller86|chng_rcd|{\"qry\": {\"__usrName\": \"test1\"}, \"nwdt\":{\"__pssWrd\": \"wif76yir\"}}");
+               
+               }, 3000);
+               
+               // Request the same data after the change
+               window.setTimeout(function ()
+               {
+                   // Request to change the data
+                   loginSocket.send("bjmiller86|get_rcd|{\"qry\": {\"__usrName\": \"test1\"}}");
+               
+               }, 6000);
+               
+               // Request the creation of data after the change
+               window.setTimeout(function ()
+               {
+                   // Request to change the data
+                   loginSocket.send("bjmiller86|crt_rcd|{\"nwdt\": [{\"__usrName\": \"test2\", \"__pssWrd\": \"abc123def\"}]}");
+               
+               }, 9000);
+               
+               window.setTimeout(function ()
+               {
+                   // Request to change the data
+                   loginSocket.send("bjmiller86|get_rcd|{\"qry\": {\"__usrName\": \"test2\"}}");
+               
+               }, 12000);
+               
+               window.setTimeout(function ()
+               {
+                   // Request to delete the data
+                   loginSocket.send("bjmiller86|dlt_rcd|{\"qry\": {\"__usrName\": \"test2\"}}");
+               
+               }, 15000);
+               
+               window.setTimeout(function ()
+               {
+                   // Request to change the data
+                   loginSocket.send("bjmiller86|get_rcd|{\"qry\": {\"__usrName\": \"test1\"}}");
+               
+               }, 18000); 
+                      
+            });
+            
+           // Listen for message events on this socket to recieve messages back from the server
+           loginSocket.onmessage = function (event)
+           {
+               // Print out any messages recieved back from the sever 
+               window.console.log("The server said: " + event.data);
+           };
+           
+           loginSocket.onmessage = function (event)
+           {
+               window.console.log("The server also said: " + event.data);
+           };
+           
+           // Listen for socket closing events 
+           loginSocket.addEventListener("close", function (event)
+           {
+               // Tell the user the socket closed
+               console.log("The socket closed: " + JSON.stringify(event));
+           });
+           
+           // Listen for errors on the socket
+           loginSocket.addEventListener("error", function(event)
+           {
+               console.log("The connection error was: " + JSON.stringify(event));
+           });
+           */ 
+        </script>
+    </body>
+</html>

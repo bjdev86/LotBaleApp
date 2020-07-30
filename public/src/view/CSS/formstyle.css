@@ -1,0 +1,220 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 18, 2019, 9:23:49 PM
+    Author     : Ben
+*/
+
+/* Styling for all elements of the form*/
+*
+{
+    /* Make sure the box sizing is correct so that the padding and margins are 
+       taken into account.*/
+    box-sizing: border-box;
+}
+
+/* Text input stylings*/
+input[type=text], select, textarea
+{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid azure;
+    border-radius: 4px;
+    resize: vertical;
+    float: left;
+}
+
+/* Text area styling 
+textarea
+{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid azure;
+    border-radius: 4px;
+    resize: vertical;
+    float: left;
+    
+    white-space: nowrap;
+    word-break: normal;
+    overflow: hidden;
+    text-overflow: clip;
+    resize: none;
+}*/
+
+/* Styling for text field labeling */
+.fdlabel
+{
+    padding: 12px 0px 12px 12px;
+    display: inline-block;
+    float: right;
+    margin-right: 5px;
+}
+
+/* Error message labeling */
+.errorMsg
+{
+    display: none; /* Start off invisible */
+    color: red;
+    padding: 5px 0px 5px 5px;
+    
+}
+
+/* Button Styling */
+input[type=button]
+{
+    height: 25px;
+    background-color: cornflowerblue;
+    color: white;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    float: right;
+}
+
+/* Button Hovering styling */
+input[type=button]:hover
+{
+    background-color: buttonshadow;
+}
+
+/* Div container styling*/
+.container
+{
+    border-radius: 5px;
+    background-color: aliceblue;
+    padding: 20px;
+    min-width: 100px;
+    max-width: 600px;
+}
+
+/* Styling for column 1 25% */
+.col-25
+{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+/* Styling for column 2 75% 
+ * Should we just set a max length of characters for the these fields*/
+.col-75
+{
+    float: right;
+    width: 75%;
+    margin-top: 6px;   
+}
+
+/* Stylizing the row
+.row
+{
+    
+}*/
+
+/* Styling for column 2 75% 
+ * Should we just set a max length of characters for the these fields*/
+.txtfld
+{
+    /*display: inline-block;*/
+    height: 30%;
+    width: 100%;
+    white-space: nowrap;
+    word-break: normal;
+    overflow: hidden;
+    text-overflow: clip;
+
+    background: white;
+    padding: 12px;
+    border: 1px solid azure;
+    border-radius: 4px;
+    resize: none; 
+    
+    font-family: serif; 
+    font-size: 16px
+}
+
+/* Set style for txtfld classes with the notes id*/
+.txtfld[id = "notes"]
+{
+    height: 100px;
+    width: 100%;
+    white-space: normal;
+    word-break: normal;
+    overflow: auto;
+    text-overflow: clip;
+
+    background: white;
+    padding: 12px;
+    border: 1px solid azure;
+    border-radius: 4px;
+    resize: both;   
+}
+
+/* Style for the the lot number selector */
+.slctr[id = "lot"]
+{
+    height: 30%;
+    width: 100%;
+    white-space: normal;
+    word-break: normal;
+    overflow: auto;
+    text-overflow: clip;
+
+    background: white;
+    padding: 12px;
+    border: 1px solid azure;
+    border-radius: 4px;
+    resize: both;
+
+    float: left;
+}
+
+/* Style used to style the text field when the value is valid. */
+div[data-txt-validity = valid]
+{
+    border: 1px solid azure;
+    border-radius: 4px;
+}
+
+/* Style used to style the text field when the value is invalid. */
+div[data-txt-validity = invalid]
+{
+    border: 3px solid red;
+    border-radius: 4px;
+}
+
+/* Stick an empty piece of content after each row, so as to break up the columns
+ * vertically. Research this more*/
+.row::after
+{
+    content: "0";
+    display: table;
+    clear: both;
+    color: aliceblue;
+}
+
+/* Responsive layout. Create a media rule that is triggered when the max width 
+ * is greater 600 pixels.*/
+@media only screen and (max-width: 600px)
+{
+    .col-25, .col-75, input[type=button]
+    {
+        width: 100%;
+        margin-top: 0;
+    }
+    
+    .fdlabel
+    {
+        float: left;
+    }
+    
+    input[type=button]
+    {
+        width: 100%; 
+        height: 40px;
+        margin-top: 10px;
+    }
+}
+

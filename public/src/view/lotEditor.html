@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Lot Editor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./CSS/formstyle.css">
+    </head>
+    <body>
+    
+    <!--Div container for the form. Creating a responsive form. The form will
+        be organized in a grid pattern with rows and columns-->    
+    <div class="container">
+        <form id="mainForm">
+            
+        <!--Row 1-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Lot Number: </label> 
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75" tabindex="0">
+                <div id="lotNumber" class="txtfld" contenteditable="true" 
+                    onkeypress="filterEnter(window.event)"></div>
+                <label id="lotNumberError" class="errorMsg"></label><br/>
+            </div>
+        </div>
+        
+        <!--Row 2-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Owner: </label> 
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75" >
+                <div id="owner" class="txtfld" contenteditable="true" 
+                     onkeypress="filterEnter(window.event)"></div>
+                <label id="ownerError" class="errorMsg"></label><br/>
+            </div>
+        </div> 
+        
+        <!--Row 3-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Buyer: </label> 
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75">
+                <div id="buyer" class="txtfld" contenteditable="true" 
+                     onkeypress="filterEnter(window.event)"></div>
+                <label id="buyerError" class="errorMsg"></label><br/>
+            </div>
+        </div> 
+        
+        <!--Row 4-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Bale Count: </label>
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75">
+                 <div id="baleCount" class="txtfld" contenteditable="true" 
+                     onkeypress="filterEnter(window.event)"></div>
+                <label id="baleCountError" class="errorMsg"></label><br/>
+            </div>
+        </div> 
+        
+        <!--Row 5-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Rejected Bale Count: </label>
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75">
+                <div id="rejectBaleCount" class="txtfld" contenteditable="true" 
+                     onkeypress="filterEnter(window.event)"></div>
+               <label id="rejectBaleCountError" class="errorMsg"></label><br/>
+            </div>
+        </div>
+        
+        <!--Row 6-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Date Shipped: </label>
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75">
+                 <!--<div id="dateShipped" class="txtfld" contenteditable="true" 
+                     onkeypress="filterEnter(window.event)"></div>-->
+                 <input type="datetime-local" id="dateShipped" class="txtfld">
+                <label id="dateShippedError" class="errorMsg"></label><br/>
+            </div>
+        </div>         
+           
+        
+        <!--Row 7-->
+        <div class="row">
+            <!--Col 1 @ 25%-->
+            <div class="col-25"> 
+                <label class="fdlabel"> Notes: </label> 
+            </div>
+            <!--Col 2 @ 75%-->
+            <div class="col-75">
+                <div id="notes" class="txtfld" contenteditable="true">Notes</div>
+                <label id="notesError" class="errorMsg"></label><br/>
+            </div>
+        </div>
+        
+        <!--Row 9-->
+        <div class="row">
+            <!--Col 1 @ 25% on left side of button bank-->
+            <div class="col-25">
+                <label class="fdlabel"> Bales: </label>
+            </div>
+            
+            <!--Col 2 @ 75% -->
+            <div class="col-75">
+                <select id="bales" multiple> </select>
+            </div>
+        </div>
+        
+        <!--Row 8-->
+        <div class="row">
+            <!--Col 1 @ 25% on left side of button bank-->
+            <div class="col-25">
+                
+            </div>
+            
+            <!--Col 2 @ 12% for each button-->
+            <div class="col-75">
+                
+                <input type="button" value="Edit Bales" name="baleEditor"/>
+                <input type="button" value="Add New Lot" name="addLotButton"/>
+                <input type="button" value="Delete Lot" name="dltLotButton"/>                
+                <input type="button" value=">>" name="nxtLot"/>
+                <input type="button" value="<<" name="prevLot"/>
+                
+            </div>
+        </div>     
+                        
+        </form>
+    </div>
+        
+        <script>
+            
+            // Function to filter out enter key presses
+            function filterEnter(event)
+            {
+                if (event.key === "Enter")
+                {
+                    event.preventDefault();
+                }
+            } 
+            
+        </script>
+        
+        <!--Script to connect the mainForm to a UIHandler that will connect it 
+            to the controller for this application-->
+        <script type="module">
+            
+            // Import BaleEditorUIHandler
+            import {LotEditorUIHandler} from "../UIHandlers/LotEditorUIHandler.js"; 
+            
+            // Create a new BaleEditorUIHandler to handle bale editing events
+            const uiHandler = new LotEditorUIHandler (window.document.getElementById("mainForm"));
+            
+            // Bind the button listeners to the buttons on this editor form
+            uiHandler.bindUI(); 
+            
+        </script>
+    </body>
+</html>
