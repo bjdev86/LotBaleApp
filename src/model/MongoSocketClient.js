@@ -56,8 +56,8 @@ class MongoSocketClient
             try
             {
                 /* Initiate the web socket connection based on the parameters  
-                 * passed in the constructor */
-                this.__socket = new WebSocket("ws://localhost:3003/" + 
+                 * passed in the constructor. OG address: ws://localhost:3003/*/
+                this.__socket = new WebSocket("http://digitalagconsultants.com/hbtserver" + 
                                 this.__usrName);
 
                 // Wait for the connection to be opened
