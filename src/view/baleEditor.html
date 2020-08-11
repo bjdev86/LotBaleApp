@@ -12,12 +12,26 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="./CSS/formstyle.css">
     </head>
     <body>
+        
+    <!-- Header Row -->
+    <div class="row">
+        <div class="header1">
+            <p>
+                Bale Editor
+            </p>
+        </div><!--header1-->
+        <div class="header2">
+            <p>
+                Hop bale editing form
+            </p>
+        </div><!--header2-->
+    </div><!--row-->
     
     <!--Div container for the form. Creating a responsive form. The form will
         be organized in a grid pattern with rows and columns-->    
     <div class="container">
         <form id="mainForm">
-            
+
         <!--Row 1-->
         <div class="row">
             <!--Col 1 @ 25%-->
@@ -182,7 +196,7 @@ and open the template in the editor.
             <!--Col 2 @ 12% for each button-->
             <div class="col-75">
                
-                <input type="button" value="GoTo Lot" name="goToBale"/>
+                <input type="button" value="GoTo Lot" name="goToBale" aria-disabled="true"/>
                 <input type="button" value="Add New Bale" name="nwBaleButton"/>
                 <input type="button" value="Delete Bale" name="dltBaleButton"/>                 
                 <input type="button" value=">>" name="next"/>
@@ -193,6 +207,15 @@ and open the template in the editor.
         </form>
     </div>
         
+    <!-- Footer -->
+    <div class="row">
+        <div class="footer col-75">
+            <p>
+                Use the buttons to manipulate Hop Bale data. New bales are added and given a baleID number one greater than the greatest baleID in the current lot. 
+            </p>
+        </div> <!-- footer row -->
+    </div><!-- row -->
+
         <script>
             
             // Function to filter out enter key presses
