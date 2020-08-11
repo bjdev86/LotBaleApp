@@ -48,7 +48,7 @@ and open the template in the editor.
                 </div> 
                 
                 <div style="float: right; width: 30%"> <!-- Select div -->
-                    <select id="lot" class = "slctr">                    
+                    <select id="lot" class = "slctr" disabled>                    
                     </select>
                     <!--<label id="lotError" class="errorMsg"></label><br/>-->
                 </div>
@@ -202,7 +202,7 @@ and open the template in the editor.
             <!--Col 2 @ 12% for each button-->
             <div class="col-75">
                
-                <input type="button" value="GoTo Lot" name="goToBale" aria-disabled="true"/>
+                <input type="button" disabled="true" value="GoTo Lot" name="goToBale"/>
                 <input type="button" value="Add New Bale" name="nwBaleButton"/>
                 <input type="button" value="Delete Bale" name="dltBaleButton"/>                 
                 <input type="button" value=">>" name="next"/>
