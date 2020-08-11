@@ -66,6 +66,7 @@ and open the template in the editor.
                 <div id="baleID" class="txtfld" contenteditable="true" 
                     onkeypress="filterEnter(window.event)"></div>
                 <label id="baleIDError" class="errorMsg"></label><br/>
+                <label> May contain between 1-2 digits </label>
             </div>
         </div>
         
@@ -80,6 +81,7 @@ and open the template in the editor.
                 <div id="fieldID" class="txtfld" contenteditable="true" 
                      onkeypress="filterEnter(window.event)"></div>
                 <label id="fieldIDError" class="errorMsg"></label><br/>
+                <label> May contain between 1-2 digits </label>
             </div>
         </div> 
         
@@ -94,6 +96,7 @@ and open the template in the editor.
                 <div id="facilityID" class="txtfld" contenteditable="true" 
                      onkeypress="filterEnter(window.event)"></div>
                 <label id="facilityIDError" class="errorMsg"></label><br/>
+                <label> May contain 1-2 digits </label>
             </div>
         </div> 
         
@@ -108,6 +111,7 @@ and open the template in the editor.
                  <div id="lotNumber" class="txtfld" contenteditable="true" 
                      onkeypress="filterEnter(window.event)"></div>
                 <label id="lotNumberError" class="errorMsg"></label><br/>
+                <label> Must be "OR########" </label>
             </div>
         </div> 
         
@@ -122,6 +126,7 @@ and open the template in the editor.
                  <div id="weight" class="txtfld" contenteditable="true" 
                      onkeypress="filterEnter(window.event)"></div>
                 <label id="weightError" class="errorMsg"></label><br/>
+                <label> Must be "###" lbs or kgs </label>
             </div>
         </div> 
         
@@ -136,6 +141,7 @@ and open the template in the editor.
                 <div id="dryMat" class="txtfld" contenteditable="true" 
                      onkeypress="filterEnter(window.event)"></div>
                <label id="dryMatError" class="errorMsg"></label><br/>
+               <label> Must be "##%"</label>
             </div>
         </div>
         
@@ -209,10 +215,42 @@ and open the template in the editor.
         
     <!-- Footer -->
     <div class="row">
-        <div class="footer">
+        <div class="footer col-75">
             <p>
-                Use the buttons to manipulate Hop Bale data. New bales are added and given a baleID number one greater than the greatest baleID in the current lot. 
+                Please remember that this application was left UNFINISHED. As such certain features don't work. The following list describes how each button should be used and how it works. 
             </p>
+            <!-- List of buttons and how they work. -->
+            <ul style="text-align: left;">
+                <li>
+                    "<<" Go back to the previous bale. Bales are indexed by "BaleID".
+                </li></br>
+                <li>
+                    ">>" Go to the next bale. 
+                </li></br>
+                <li>
+                    "Delete Bale" Removes the bale from the database.
+                </li></br>
+                <li>
+                    "Add Bale" Adds a new bale, automatically, to the database. The baleID for the new bale is calculated by the server. 
+                </li></br>
+                <li>
+                    "GoTo Lot" This button is disabled. When enabled it will allow the user to go to the "Lot Editor" form, so edits to the lot data can be made. 
+                </li></br>
+                <li>
+                    "Lot Number" This drop down list is disabled. When enabled it will allow the user to select a lot of hop bales to be loaded into this application to be edited.
+                </li></br>
+            </ul> <!-- button list -->
+            <p>
+                The following is a list of current issues and some work arounds: 
+            </p>
+            <ul style="text-align: left;">
+                <li>
+                    The connection to the websocket server times out. After about a minute of inactivity the websocket connection to the server will automatically close. Refreshing this page will restablish the connection. 
+                </li></br>
+                <li>
+                    Error handling messages related to data entry text fields appear when incorrectly formated data is entered. However, error handling messages do not automatically disappear when incorrectly formatted data is corrected.   
+                </li></br>
+            </ul> <!-- Issue list -->
         </div> <!-- footer row -->
     </div><!-- row -->
 
