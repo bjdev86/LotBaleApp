@@ -127,7 +127,8 @@ input[type=button]:hover
 /* Class styling for the footer*/
 .footer
 {
-    text-align: center;
+    margin: auto;
+    text-align: left;
     font-family: 'Courier New', Courier, monospace;
 }
 
